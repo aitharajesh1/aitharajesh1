@@ -1,0 +1,14 @@
+@Library('CommonJenkinsLibrary') _
+// 'Scripted' Jenkins pipeline
+node('docker-maven-slave') {
+    stage('Checkout') {
+        checkout scm
+    }
+    stage('Running Services in Newman') {
+        sh loadMixins() + """
+            newman run ./tests/Invitation.postman_collection.json -e ./config/Inv-OHID-Non-RP89372.postman_environment.json -r htmlextra
+	    newman run ./tests/UI.postman_collection.json -e ./config/ui-captain-np.postman_environment.json -r htmlextra
+        """
+        archiveArtifacts artifacts: "newman/*.html", allowEmptyArchive: true
+    }
+}

@@ -1,0 +1,962 @@
+{
+	"info": {
+		"_postman_id": "93149f82-8498-496c-96f4-51eb5bed1a5b",
+		"name": "Invitation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Inv_oidc-token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//First test case",
+							"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+							"",
+							"//seond test case",
+							"tests[\"Body matches string\"] = responseBody.has(\"Bearer\");",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"inv_access_token\", jsonData.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "TenantID",
+						"value": "optumgovid",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "{{inv_client_id}}",
+							"description": "TestAutomationAPIServ",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{inv_client_secret}}",
+							"description": "ffbc0146fc8fde0e45816dcea557828d824bf238cc4a2a530e82e3bc2b9800ddb0ba919f9a930e567ac19547afb521f8",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "{{inv_scope}}",
+							"description": "urn:optum:oid:scim:users:query",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{prov_host}}/oidc/token",
+					"protocol": "https",
+					"host": [
+						"{{prov_host}}"
+					],
+					"path": [
+						"oidc",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LookUpinvitation-UUID with profile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//setTimeout(() => {}, 10000);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//First test case",
+							"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+							"",
+							"pm.test(\"validating the status in the Invitation\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.invitation[0].status).to.eql(\"REGISTERED\");",
+							"});",
+							"",
+							"//seond test case",
+							"tests[\"Body matches string\"] = responseBody.has(\"uuid\",\"first_name\",\"last_name\",\"email_address\");",
+							"",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{inv_access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api-domain}}/api/v1/invitations?uuid={{inv_uuid}}&include-profile={{include_profile}}",
+					"host": [
+						"{{api-domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"invitations"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "{{inv_uuid}}"
+						},
+						{
+							"key": "include-profile",
+							"value": "{{include_profile}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LookUpinvitation-Email without profile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//setTimeout(() => {}, 10000);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//First test case",
+							"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{inv_access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api-domain}}/api/v1/invitations?email={{inv_email_address}}",
+					"host": [
+						"{{api-domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"invitations"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{inv_email_address}}"
+						}
+					]
+				},
+				"description": "{{api-domain}}/api/v1/invitations?uuid=4d584a7f-b805-4b38-ab76-aaa06c4c9773&app-id=OPTS72551"
+			},
+			"response": []
+		},
+		{
+			"name": "LookUpinvitation-Email with profile status check",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//setTimeout(() => {}, 10000);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//First test case",
+							"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+							"",
+							"pm.test(\"validating the status in the Invitation\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.invitation[0].status).to.eql(\"REGISTERED\");",
+							"});",
+							"",
+							"//seond test case",
+							"tests[\"Body matches string\"] = responseBody.has(\"uuid\",\"first_name\",\"last_name\",\"email_address\");",
+							"",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{inv_access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api-domain}}/api/v1/invitations?email={{inv_email_registered}}&include-profile={{include_profile}}",
+					"host": [
+						"{{api-domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"invitations"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{inv_email_registered}}"
+						},
+						{
+							"key": "include-profile",
+							"value": "{{include_profile}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LookUpinvitation-Token without profile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//setTimeout(() => {}, 10000);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//First test case",
+							"tests[\"status code is 200\"] = statusResponse.sucessCode();"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{inv_access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api-domain}}/api/v1/invitations?token={{inv_token_response}}",
+					"host": [
+						"{{api-domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"invitations"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{inv_token_response}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LookUpinvitation-Email without profile status check",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//setTimeout(() => {}, 10000);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//First test case",
+							"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+							"",
+							"",
+							"pm.test(\"validating the status in the Invitation\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.invitation[0].status).to.eql(\"REGISTERED\");",
+							"});",
+							"",
+							"//seond test case",
+							"tests[\"Body matches string\"] = responseBody.has(\"uuid\");",
+							"",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{inv_access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api-domain}}/api/v1/invitations?email={{inv_email_registered}}",
+					"host": [
+						"{{api-domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"invitations"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{inv_email_registered}}"
+						}
+					]
+				},
+				"description": "{{api-domain}}/api/v1/invitations?uuid=4d584a7f-b805-4b38-ab76-aaa06c4c9773&app-id=OPTS72551"
+			},
+			"response": []
+		},
+		{
+			"name": "LookUpinvitation-Token without profile Statuscheck",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//setTimeout(() => {}, 10000);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//First test case",
+							"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+							"",
+							"pm.test(\"validating the status in the Invitation\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.invitation[0].status).to.eql(\"REGISTERED\");",
+							"});",
+							"",
+							"//seond test case",
+							"tests[\"Body matches string\"] = responseBody.has(\"uuid\");",
+							"",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{inv_access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api-domain}}/api/v1/invitations?token={{inv_token_registered}}",
+					"host": [
+						"{{api-domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"invitations"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{inv_token_registered}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LookUpinvitation-Token with profile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//setTimeout(() => {}, 10000);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//First test case",
+							"tests[\"status code is 200\"] = statusResponse.sucessCode();"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{inv_access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api-domain}}/api/v1/invitations?token={{inv_token_response}}&include-profile={{include_profile}}",
+					"host": [
+						"{{api-domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"invitations"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{inv_token_response}}"
+						},
+						{
+							"key": "include-profile",
+							"value": "{{include_profile}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LookUpinvitation-Token with profile Statuscheck",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//setTimeout(() => {}, 10000);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//First test case",
+							"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+							"",
+							"pm.test(\"validating the status in the Invitation\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.invitation[0].status).to.eql(\"REGISTERED\");",
+							"});",
+							"",
+							"//seond test case",
+							"tests[\"Body matches string\"] = responseBody.has(\"uuid\",\"first_name\",\"last_name\",\"email_address\");",
+							"",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{inv_access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api-domain}}/api/v1/invitations?token={{inv_token_registered}}&include-profile={{include_profile}}",
+					"host": [
+						"{{api-domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"invitations"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{inv_token_registered}}"
+						},
+						{
+							"key": "include-profile",
+							"value": "{{include_profile}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LookUpinvitation-UUID without profile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//setTimeout(() => {}, 10000);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//First test case",
+							"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+							"",
+							"pm.test(\"validating the status in the Invitation\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.invitation[0].status).to.eql(\"REGISTERED\");",
+							"});",
+							"",
+							"//seond test case",
+							"tests[\"Body matches string\"] = responseBody.has(\"uuid\");",
+							"",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{inv_access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api-domain}}/api/v1/invitations?uuid={{inv_uuid}}",
+					"host": [
+						"{{api-domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"invitations"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "{{inv_uuid}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invitation Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//First test case",
+							"tests[\"status code is 201\"] = statusResponse.sucessCreated();",
+							"",
+							"//seond test case",
+							"tests[\"Body matches string\"] = responseBody.has(\"email_address\", \"token\", \"target_url\", \"creation_date\", \"expiration_date\",\"status\",\"url\",\"context\", \"source_id\", \"name\" );",
+							"",
+							"let emailaddress= pm.variables.get (\"email_address\");",
+							"console.log(\"email address.....\" + emailaddress);",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"inv_token_response\", jsonData.invitation.token);",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"inv_email_address\", jsonData.invitation.email_address);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//setTimeout(() => {}, 10000);",
+							"//setting the values according to the current date",
+							"let date = Date.now();",
+							"let email = 'priminv' + date + '@getnada.com';",
+							"postman.setEnvironmentVariable('inv_email', email);",
+							"//pm.environment.set(\"Numeric\",_.random(00000, 99999));",
+							"",
+							"",
+							"",
+							"//var firstNames = [\"abc\", \"john\", \"Jacob\", \"123\", \"jack12\", \"*&@feddsd3\", null] ",
+							"//var lastNames = [\"Smith\", \"Johnson\", null, \"09\"]",
+							"//pm.variables.set(\"firstname\", firstNames[_.random(firstNames.length -1)]);",
+							"//pm.variables.set(\"lastname\", lastNames[_.random(lastNames.length -1)]);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{inv_access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"context\": {\r\n        \"properties\": [\r\n            {\r\n                \"name\": \"firstname\",\r\n                \"value\": \"Firstname-{{$randomFirstName}}\"\r\n            },\r\n            {\r\n                \"name\": \"lastname\",\r\n                \"value\": \"lastname-{{$randomLastName}}\"\r\n            },\r\n            {\r\n                \"name\": \"dob\",\r\n                \"value\": \"12-21-1986\"\r\n            },\r\n            {\r\n                \"name\": \"username\",                \r\n                \"value\": \"Username_{{$timestamp}}.@$`?{{Numeric}}\"\r\n            }\r\n        ],\r\n        \"source_id\": \"IEUniqueID1\"\r\n    },\r\n    \"application_id\": \"RP89372\",\r\n    \"email_address\": \"{{inv_email}}\",\r\n    \"expiration_date\": \"12-26-2022\",\r\n    \"target_url\": \"https://abc.com/\"\r\n}"
+				},
+				"url": {
+					"raw": "{{api-domain}}/api/v1/invitations",
+					"host": [
+						"{{api-domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"invitations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LookUpinvitation-Email with profile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//setTimeout(() => {}, 10000);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//First test case",
+							"tests[\"status code is 200\"] = statusResponse.sucessCode();"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{inv_access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api-domain}}/api/v1/invitations?email={{inv_email_address}}&include-profile={{include_profile}}",
+					"host": [
+						"{{api-domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"invitations"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{inv_email_address}}"
+						},
+						{
+							"key": "include-profile",
+							"value": "{{include_profile}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"statusResponse = {",
+					"  sucessCode: function() {",
+					"      return responseCode.code == 200;",
+					"  },",
+					"  sucessCreated: function() {",
+					"      return responseCode.code == 201;",
+					"  },",
+					"  failureResponse: function() {",
+					"      return responseCode.code == 400;",
+					"  }",
+					"};"
+				]
+			}
+		}
+	]
+}

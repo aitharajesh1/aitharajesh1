@@ -1,0 +1,1739 @@
+{
+	"info": {
+		"_postman_id": "ae633656-8eee-4d9b-b025-44f75ed72fb9",
+		"name": "FPWD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ForgotPwd",
+			"item": [
+				{
+					"name": "clearContext",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the successMessage\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.successMessage).to.eql(\"true\");",
+									"});",
+									"",
+									"postman.setNextRequest(\"getuseremailtype\");",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// postman.setNextRequest(\"/oidc/authorize\");\r",
+									"// postman.setNextRequest(\"/app/index.html\");\r",
+									"// postman.setNextRequest(\"/api/v1/auth/login/init\");\r",
+									"// postman.setNextRequest(\"/api/v1/auth/risk/init\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US,en;q=0.5"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"url": {
+							"raw": "https://{{prov_host}}/api/v1/users/common/clearContext",
+							"protocol": "https",
+							"host": [
+								"{{prov_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"common",
+								"clearContext"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "https://captain-np.aikyam.com/api/v1/users/common/clearContext",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "connection",
+										"value": "keep-alive"
+									},
+									{
+										"key": "referer",
+										"value": "https://identity.stage.optumgovid.com/app/index.html"
+									},
+									{
+										"key": "accept-language",
+										"value": "en-US,en;q=0.5"
+									},
+									{
+										"key": "x-sessntabid",
+										"value": "nixpx7zqex"
+									},
+									{
+										"key": "dnt",
+										"value": "1"
+									},
+									{
+										"key": "pragma",
+										"value": "no-cache"
+									},
+									{
+										"key": "accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "x-csrf",
+										"value": "OID_TOKEN"
+									},
+									{
+										"key": "screennumber",
+										"value": "1"
+									},
+									{
+										"key": "accept-encoding",
+										"value": "gzip, deflate"
+									},
+									{
+										"key": "user-agent",
+										"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+									},
+									{
+										"key": "akym-ubrid",
+										"value": "ubrid"
+									},
+									{
+										"key": "cookie",
+										"value": "oidp=AVXc-yhLyQq38EbA-JOXxr4A7LbLEpQUvFKHc3rBqa-LZJqCFTqqJizc2mWI; akym-d=0gMV27HdAiqX1eZ7C6WUeG"
+									},
+									{
+										"key": "host",
+										"value": "captain-np.aikyam.com"
+									}
+								],
+								"url": {
+									"raw": "https://captain-np.aikyam.com/api/v1/users/common/clearContext",
+									"protocol": "https",
+									"host": [
+										"captain-np",
+										"aikyam",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"common",
+										"clearContext"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "content-length",
+									"value": "166"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								},
+								{
+									"key": "date",
+									"value": "Wed, 09 Feb 2022 17:15:30 GMT"
+								},
+								{
+									"key": "trace-id",
+									"value": "2f7313e78711ee50659da5a8277431a0"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "expires",
+									"value": "0"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "server",
+									"value": "CloudFront"
+								},
+								{
+									"key": "x-cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "via",
+									"value": "1.1 8504d76345ac5d175fb1aabd19e8fede.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "x-amz-cf-pop",
+									"value": "MSP50-C2"
+								},
+								{
+									"key": "x-amz-cf-id",
+									"value": "X7Y5exsuwwfKgVCCmGFm7WGYwcVL9aN5hoXJej-MvVcrk9TaPPoqhA=="
+								}
+							],
+							"cookie": [],
+							"body": "{\"successMessage\":\"true\",\"showRegistrationLink\":true,\"showManageOptumIdLink\":true,\"status\":true,\"localizationEnabled\":false,\"internationalPhoneEnabled\":false,\"tsr\":0}"
+						}
+					]
+				},
+				{
+					"name": "Valid username",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"postman.setNextRequest(\"/api/v1/users/common/chat-support-info\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status Message\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(true);",
+									"});",
+									"postman.setNextRequest(\"/api/access/getChallengeQuestions\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US,en;q=0.5"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}",
+								"type": "text"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"recoveryType\":\"ForgotPwd\",\"userName\":\"{{forgot_username}}\"}"
+						},
+						"url": {
+							"raw": "https://{{prov_host}}/api/forgotaccess/getuseremailtype",
+							"protocol": "https",
+							"host": [
+								"{{prov_host}}"
+							],
+							"path": [
+								"api",
+								"forgotaccess",
+								"getuseremailtype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InValid username",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"postman.setNextRequest(\"/api/v1/users/common/chat-support-info\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status Message\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(true);",
+									"});",
+									"postman.setNextRequest(\"/api/access/getChallengeQuestions\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US,en;q=0.5"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}",
+								"type": "text"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"recoveryType\":\"ForgotPwd\",\"userName\":\"invaliduser1-1\"}"
+						},
+						"url": {
+							"raw": "https://{{prov_host}}/api/forgotaccess/getuseremailtype",
+							"protocol": "https",
+							"host": [
+								"{{prov_host}}"
+							],
+							"path": [
+								"api",
+								"forgotaccess",
+								"getuseremailtype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "valid Emailaddress",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"postman.setNextRequest(\"/api/v1/users/common/chat-support-info\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status Message\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(true);",
+									"});",
+									"postman.setNextRequest(\"/api/access/getChallengeQuestions\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US,en;q=0.5"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}",
+								"type": "text"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"recoveryType\":\"ForgotPwd\",\"userName\":\"invaliduser1-1\"}"
+						},
+						"url": {
+							"raw": "https://{{prov_host}}/api/forgotaccess/getuseremailtype",
+							"protocol": "https",
+							"host": [
+								"{{prov_host}}"
+							],
+							"path": [
+								"api",
+								"forgotaccess",
+								"getuseremailtype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid Emailaddress",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"postman.setNextRequest(\"/api/v1/users/common/chat-support-info\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status Message\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(true);",
+									"});",
+									"postman.setNextRequest(\"/api/access/getChallengeQuestions\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US,en;q=0.5"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}",
+								"type": "text"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"recoveryType\":\"ForgotPwd\",\"userName\":\"invaliduser1-1@testing.com\"}"
+						},
+						"url": {
+							"raw": "https://{{prov_host}}/api/forgotaccess/getuseremailtype",
+							"protocol": "https",
+							"host": [
+								"{{prov_host}}"
+							],
+							"path": [
+								"api",
+								"forgotaccess",
+								"getuseremailtype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/access/getChallengeQuestions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the successMessage\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(false);",
+									"});",
+									"",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.globals.set(\"secQuestion1\", jsonData.secQuestion1);",
+									"pm.globals.set(\"secQuestion2\", jsonData.secQuestion2);",
+									"pm.globals.set(\"secQuestionId1\", jsonData.secQuestionId1);",
+									"pm.globals.set(\"secQuestionId2\", jsonData.secQuestionId2);",
+									"postman.setNextRequest(\"displayUserNameByVerifyingSecurityQuestion\");",
+									"//postman.setNextRequest(\"/api/passwordpolicy/fetchpolicyforuser\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"postman.setNextRequest(\"/api/forgotaccess/getUserInfoForAccountRecoveryProcess\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US,en;q=0.5"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*",
+								"disabled": true
+							},
+							{
+								"key": "accept-encoding",
+								"value": "gzip, deflate"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"url": {
+							"raw": "https://{{prov_host}}/api/forgotaccess/getChallengeQuestions",
+							"protocol": "https",
+							"host": [
+								"{{prov_host}}"
+							],
+							"path": [
+								"api",
+								"forgotaccess",
+								"getChallengeQuestions"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "https://captain-np.aikyam.com/api/forgotaccess/getChallengeQuestions",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "connection",
+										"value": "keep-alive"
+									},
+									{
+										"key": "referer",
+										"value": "https://identity.stage.optumgovid.com/app/index.html"
+									},
+									{
+										"key": "accept-language",
+										"value": "en-US,en;q=0.5"
+									},
+									{
+										"key": "x-sessntabid",
+										"value": "nixpx7zqex"
+									},
+									{
+										"key": "dnt",
+										"value": "1"
+									},
+									{
+										"key": "pragma",
+										"value": "no-cache"
+									},
+									{
+										"key": "accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "x-csrf",
+										"value": "OID_TOKEN"
+									},
+									{
+										"key": "screennumber",
+										"value": "1"
+									},
+									{
+										"key": "accept-encoding",
+										"value": "gzip, deflate"
+									},
+									{
+										"key": "user-agent",
+										"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+									},
+									{
+										"key": "akym-ubrid",
+										"value": "ubrid"
+									},
+									{
+										"key": "cookie",
+										"value": "oidp=AVXc-yhLyQq38EbA-JOXxr4A7LbLEpQUvFKHc3rBqa-LZJqCFTqqJizc2mWI; akym-d=0gMV27HdAiqX1eZ7C6WUeG; pRKcb1tV=A4Bse99-AQAAXdUFtR7hx-q5NTj9zrkvZWEjZRooINayeVBDaV887obfCxaoAcbLr6-0zduywH8AAEB3AAAAAA|1|0|89f049698fa9e4c6226574a534f50ea22fd77e7e"
+									},
+									{
+										"key": "host",
+										"value": "captain-np.aikyam.com"
+									}
+								],
+								"url": {
+									"raw": "https://captain-np.aikyam.com/api/forgotaccess/getChallengeQuestions",
+									"protocol": "https",
+									"host": [
+										"captain-np",
+										"aikyam",
+										"com"
+									],
+									"path": [
+										"api",
+										"forgotaccess",
+										"getChallengeQuestions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "content-length",
+									"value": "578"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								},
+								{
+									"key": "date",
+									"value": "Wed, 09 Feb 2022 17:15:36 GMT"
+								},
+								{
+									"key": "trace-id",
+									"value": "5e7c463e3d78014860d629a6e3e2fbcf"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "expires",
+									"value": "0"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "server",
+									"value": "CloudFront"
+								},
+								{
+									"key": "x-cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "via",
+									"value": "1.1 c6b205ca4d1f6535990550be830c6f98.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "x-amz-cf-pop",
+									"value": "MSP50-C2"
+								},
+								{
+									"key": "x-amz-cf-id",
+									"value": "vyk8WG8RD00CPHcb13n0Wj5lJ3pNw6xUTi6B-SkwdaCUbIyGdf87_w=="
+								}
+							],
+							"cookie": [],
+							"body": "{\"success\":false,\"status\":false,\"errorMap\":{},\"notificationMap\":{},\"uniqueEmail\":false,\"invalidRecoveryOptns\":false,\"messages\":{},\"primaryEmailVerified\":true,\"secondaryEmailVerified\":false,\"phoneVerified\":false,\"secQuestionAvailable\":true,\"active\":true,\"secQuestion1\":\"What was the name of your worst boss?\",\"secQuestion2\":\"Where was your first kiss?\",\"primaryEmailAndSecEmailVerified\":false,\"skipAccountRecovery\":false,\"requestType\":\"forgotPwd\",\"secQuestionId1\":\"132\",\"secQuestionId2\":\"133\",\"textModeOpted\":false,\"callModeOpted\":false,\"bothModeOpted\":false,\"multipleIDs\":false}"
+						}
+					]
+				},
+				{
+					"name": "displayUserNameByVerifyingSecurityQuestion",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"postman.setNextRequest(\"/api/v1/users/common/chat-support-info\");",
+									"",
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"//Security Question Validation.",
+									"//const SQ = pm.response.json();",
+									"const SQ1 = pm.globals.get(\"secQuestion1\");",
+									"const SQ2 = pm.globals.get(\"secQuestion2\");",
+									"//console.log(SQ.secQuestion1);",
+									"let securityanswer1,securityanswer2;",
+									"if (SQ1 == pm.environment.get(\"question_3\")){",
+									"securityanswer1 = pm.environment.get(\"qid_answer3\");",
+									"console.log(\"Hello Securityanswerboss1:\" + securityanswer1);}",
+									"",
+									"else if(SQ1 == pm.environment.get(\"question_1\")){",
+									"securityanswer1 = pm.environment.get(\"qid_answer1\");",
+									"console.log(\"Hello Securityanswerkiss1:\" + securityanswer1);}",
+									"else{",
+									"securityanswer1 = pm.environment.get(\"qid_answer2\");",
+									"console.log(\"Hello Securityanswerfood1:\" + securityanswer1);",
+									"}",
+									"pm.globals.set(\"Securityanswer1\", securityanswer1);",
+									"console.log(\"Hello Securityanswer1:\" + securityanswer1);",
+									"",
+									"if (SQ2 == pm.environment.get(\"question_3\")){",
+									"securityanswer2 = pm.environment.get(\"qid_answer3\");",
+									"console.log(\"Hello Securityanswerboss:\" + securityanswer2);}",
+									"",
+									"else if(SQ2 == pm.environment.get(\"question_1\")){",
+									"securityanswer2 = pm.environment.get(\"qid_answer1\");",
+									"console.log(\"Hello Securityanswerkiss:\" + securityanswer2);}",
+									"else{",
+									"securityanswer2 = pm.environment.get(\"qid_answer2\");",
+									"console.log(\"Hello Securityanswerfood:\" + securityanswer2);",
+									"}",
+									"pm.globals.set(\"Securityanswer2\", securityanswer2);",
+									"console.log(\"Hello Securityanswer:\" + securityanswer2);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the successMessage\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(true);",
+									"    pm.expect(jsonData.success).to.eql(false);",
+									"});",
+									"postman.setNextRequest(\"/api/passwordpolicy/fetchpolicyforuser\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*",
+								"disabled": true
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"recoveryType\":\"secQuestion\",\"secQuestionId1\":\"{{secQuestionId1}}\",\"secQuestion1\":\"{{secQuestion1}}\",\"secAns1\":\"{{Securityanswer1}}\",\"secQuestionId2\":\"{{secQuestionId2}}\",\"secQuestion2\":\"{{secQuestion2}}\",\"secAns2\":\"{{Securityanswer2}}\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{prov_host}}/api/forgotaccess/displayUserNameByVerifyingSecurityQuestion",
+							"protocol": "https",
+							"host": [
+								"{{prov_host}}"
+							],
+							"path": [
+								"api",
+								"forgotaccess",
+								"displayUserNameByVerifyingSecurityQuestion"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "https://captain-np.aikyam.com/api/forgotaccess/displayUserNameByVerifyingSecurityQuestion",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "connection",
+										"value": "keep-alive"
+									},
+									{
+										"key": "referer",
+										"value": "https://oid.ctkube.com/tb/app/index.html"
+									},
+									{
+										"key": "accept-language",
+										"value": "en-US"
+									},
+									{
+										"key": "x-sessntabid",
+										"value": "nixpx7zqex"
+									},
+									{
+										"key": "dnt",
+										"value": "1"
+									},
+									{
+										"key": "pragma",
+										"value": "no-cache"
+									},
+									{
+										"key": "accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "x-csrf",
+										"value": "OID_TOKEN"
+									},
+									{
+										"key": "content-type",
+										"value": "application/json;charset=utf-8"
+									},
+									{
+										"key": "cache-control",
+										"value": "no-cache"
+									},
+									{
+										"key": "accept-encoding",
+										"value": "gzip, deflate"
+									},
+									{
+										"key": "user-agent",
+										"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+									},
+									{
+										"key": "akym-s",
+										"value": "a3194bb4e0388761c30b9130baffe6b318e4cf78d3e5bd2800bb7e672518467af89c249202c41f0a780c62f28444fe885e277f8f213f25e3e65e29eecaca33a22427853a1bbdf599b295c71e4904b398ef814022a0c7dc0ff7c259e6e82db6f3e3ef4220a1f9d361890c6324f035ef456f70f9e40097356f4606a094724e331f43e7f2bcb8f2e2ca0bbba8ed96ff444b6aecff5e5c202f744e28aae23a3b6b45fcd581b2c0343f5c1400216afb"
+									},
+									{
+										"key": "akym-t",
+										"value": "8OSDiiSZyQVb50vG/opWkJ7kapHTdAzOEQwHjm+QW/A="
+									},
+									{
+										"key": "akym-ubrid",
+										"value": "ubrid"
+									},
+									{
+										"key": "cookie",
+										"value": "oidp=AVXc-yhLyQq38EbA-JOXxr4A7LbLEpQUvFKHc3rBqa-LZJqCFTqqJizc2mWI; akym-d=0gMV27HdAiqX1eZ7C6WUeG; pRKcb1tV=A4Bse99-AQAAXdUFtR7hx-q5NTj9zrkvZWEjZRooINayeVBDaV887obfCxaoAcbLr6-0zduywH8AAEB3AAAAAA|1|0|89f049698fa9e4c6226574a534f50ea22fd77e7e"
+									},
+									{
+										"key": "content-length",
+										"value": "207"
+									},
+									{
+										"key": "host",
+										"value": "captain-np.aikyam.com"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"recoveryType\":\"secQuestion\",\"secQuestionId1\":\"4\",\"secQuestion1\":\"What was the name of your worst boss?\",\"secAns1\":\"boss1\",\"secQuestionId2\":\"2\",\"secQuestion2\":\"Where was your first kiss?\",\"secAns2\":\"kiss1\"}"
+								},
+								"url": {
+									"raw": "https://captain-np.aikyam.com/api/forgotaccess/displayUserNameByVerifyingSecurityQuestion",
+									"protocol": "https",
+									"host": [
+										"captain-np",
+										"aikyam",
+										"com"
+									],
+									"path": [
+										"api",
+										"forgotaccess",
+										"displayUserNameByVerifyingSecurityQuestion"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "content-length",
+									"value": "476"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								},
+								{
+									"key": "date",
+									"value": "Wed, 09 Feb 2022 17:15:39 GMT"
+								},
+								{
+									"key": "x-ion-hop",
+									"value": "test"
+								},
+								{
+									"key": "expires",
+									"value": "0"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "server",
+									"value": "CloudFront"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "trace-id",
+									"value": "f8536970ab7aaa700e46063fcaab052c"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "x-cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "via",
+									"value": "1.1 132771200aa1c0d1c1f228a602d5d0ec.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "x-amz-cf-pop",
+									"value": "MSP50-C2"
+								},
+								{
+									"key": "x-amz-cf-id",
+									"value": "z0XBBBGWVXAxzh_HLJhZpH-u0dQ0DAL5IYP7T4l_iluvmrgErTx8_A=="
+								}
+							],
+							"cookie": [],
+							"body": "{\"success\":false,\"status\":true,\"errorMap\":{},\"notificationMap\":{},\"userName\":\"testperfuser20200706-2011292\",\"uniqueEmail\":false,\"invalidRecoveryOptns\":false,\"messages\":{},\"primaryEmailVerified\":false,\"secondaryEmailVerified\":false,\"phoneVerified\":false,\"secQuestionAvailable\":false,\"active\":true,\"primaryEmailAndSecEmailVerified\":false,\"skipAccountRecovery\":false,\"requestType\":\"forgotPwd\",\"textModeOpted\":false,\"callModeOpted\":false,\"bothModeOpted\":false,\"multipleIDs\":false}"
+						}
+					]
+				},
+				{
+					"name": "/api/passwordpolicy/fetchpolicyforuser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case\r",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();\r",
+									"\r",
+									"postman.setNextRequest(\"/api/resetpassword/resetsecuritycredentials\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//postman.setNextRequest(\"/api/v1/users/common/chat-support-info\");",
+									"//postman.setNextRequest(\"/api/forgotaccess/UserNameByVerifyingSecurityQuestion\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US,en;q=0.5"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{prov_host}}/api/passwordpolicy/fetchpolicyforuser",
+							"protocol": "https",
+							"host": [
+								"{{prov_host}}"
+							],
+							"path": [
+								"api",
+								"passwordpolicy",
+								"fetchpolicyforuser"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "https://captain-np.aikyam.com/api/passwordpolicy/fetchpolicyforuser",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "connection",
+										"value": "keep-alive"
+									},
+									{
+										"key": "referer",
+										"value": "https://identity.stage.optumgovid.com/app/index.html"
+									},
+									{
+										"key": "accept-language",
+										"value": "en-US,en;q=0.5"
+									},
+									{
+										"key": "x-sessntabid",
+										"value": "nixpx7zqex"
+									},
+									{
+										"key": "dnt",
+										"value": "1"
+									},
+									{
+										"key": "pragma",
+										"value": "no-cache"
+									},
+									{
+										"key": "accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "x-csrf",
+										"value": "OID_TOKEN"
+									},
+									{
+										"key": "screennumber",
+										"value": "1"
+									},
+									{
+										"key": "accept-encoding",
+										"value": "gzip, deflate"
+									},
+									{
+										"key": "user-agent",
+										"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+									},
+									{
+										"key": "akym-ubrid",
+										"value": "ubrid"
+									},
+									{
+										"key": "cookie",
+										"value": "oidp=AVXc-yhLyQq38EbA-JOXxr4A7LbLEpQUvFKHc3rBqa-LZJqCFTqqJizc2mWI; akym-d=0gMV27HdAiqX1eZ7C6WUeG; pRKcb1tV=A4Bse99-AQAAXdUFtR7hx-q5NTj9zrkvZWEjZRooINayeVBDaV887obfCxaoAcbLr6-0zduywH8AAEB3AAAAAA|1|0|89f049698fa9e4c6226574a534f50ea22fd77e7e"
+									},
+									{
+										"key": "host",
+										"value": "captain-np.aikyam.com"
+									}
+								],
+								"url": {
+									"raw": "https://captain-np.aikyam.com/api/passwordpolicy/fetchpolicyforuser",
+									"protocol": "https",
+									"host": [
+										"captain-np",
+										"aikyam",
+										"com"
+									],
+									"path": [
+										"api",
+										"passwordpolicy",
+										"fetchpolicyforuser"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "content-length",
+									"value": "257"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								},
+								{
+									"key": "date",
+									"value": "Wed, 09 Feb 2022 17:15:40 GMT"
+								},
+								{
+									"key": "trace-id",
+									"value": "03c299b8130c99dd17fa1c6e93b4ff49"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "expires",
+									"value": "0"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "server",
+									"value": "CloudFront"
+								},
+								{
+									"key": "x-cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "via",
+									"value": "1.1 ed01cb5c13dca3777a2f293dbaad11a0.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "x-amz-cf-pop",
+									"value": "MSP50-C2"
+								},
+								{
+									"key": "x-amz-cf-id",
+									"value": "mN5sMV9VgloFf2VZ37qF6kTWeMjVK7ftDe2xRky4-HSV04FCgr_Z5w=="
+								}
+							],
+							"cookie": [],
+							"body": "{\"policyName\":\"\",\"policyID\":\"\",\"minimumNumeric\":1,\"minimumLowercase\":1,\"minimumUppercase\":1,\"minimumSpecialChars\":0,\"minimumLength\":8,\"maximumLength\":100,\"passwordExpirationDays\":1024,\"passwordChangeInterval\":0,\"numCharacterChange\":0,\"prohibitedChars\":\"& \"}"
+						}
+					]
+				},
+				{
+					"name": "/api/resetpassword/resetsecuritycredentials",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let date = Date.now();\r",
+									"let password  = \"Pass$1\" + date;\r",
+									"pm.globals.set('pwd', password);\r",
+									"console.log(\"Password:----\"+pm.globals.get('pwd'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case\r",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();\r",
+									"\r",
+									"//postman.setNextRequest(\"Invalid Password\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US,en;q=0.5"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"pwd\":\"DSZ{{pwd}}\",\"confirmPwd\":\"DSZ{{pwd}}\",\"passwordPolicyInfoVO\":{\"policyName\":\"\",\"policyID\":\"\",\"minimumNumeric\":1,\"minimumLowercase\":1,\"minimumUppercase\":1,\"minimumSpecialChars\":1,\"minimumLength\":8,\"maximumLength\":100,\"passwordExpirationDays\":60,\"passwordChangeInterval\":1,\"numCharacterChange\":3}}"
+						},
+						"url": {
+							"raw": "https://{{prov_host}}/api/resetpassword/resetsecuritycredentials",
+							"protocol": "https",
+							"host": [
+								"{{prov_host}}"
+							],
+							"path": [
+								"api",
+								"resetpassword",
+								"resetsecuritycredentials"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "https://captain-np.aikyam.com/api/resetpassword/resetsecuritycredentials",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "connection",
+										"value": "keep-alive"
+									},
+									{
+										"key": "referer",
+										"value": "https://identity.stage.optumgovid.com/app/index.html"
+									},
+									{
+										"key": "accept-language",
+										"value": "en-US,en;q=0.5"
+									},
+									{
+										"key": "x-sessntabid",
+										"value": "nixpx7zqex"
+									},
+									{
+										"key": "dnt",
+										"value": "1"
+									},
+									{
+										"key": "pragma",
+										"value": "no-cache"
+									},
+									{
+										"key": "accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "x-csrf",
+										"value": "OID_TOKEN"
+									},
+									{
+										"key": "content-type",
+										"value": "application/json;charset=utf-8"
+									},
+									{
+										"key": "screennumber",
+										"value": "1"
+									},
+									{
+										"key": "cache-control",
+										"value": "no-cache"
+									},
+									{
+										"key": "accept-encoding",
+										"value": "gzip, deflate"
+									},
+									{
+										"key": "user-agent",
+										"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+									},
+									{
+										"key": "akym-ubrid",
+										"value": "ubrid"
+									},
+									{
+										"key": "cookie",
+										"value": "oidp=AVXc-yhLyQq38EbA-JOXxr4A7LbLEpQUvFKHc3rBqa-LZJqCFTqqJizc2mWI; akym-d=0gMV27HdAiqX1eZ7C6WUeG; pRKcb1tV=A4Bse99-AQAAXdUFtR7hx-q5NTj9zrkvZWEjZRooINayeVBDaV887obfCxaoAcbLr6-0zduywH8AAEB3AAAAAA|1|0|89f049698fa9e4c6226574a534f50ea22fd77e7e"
+									},
+									{
+										"key": "content-length",
+										"value": "316"
+									},
+									{
+										"key": "host",
+										"value": "captain-np.aikyam.com"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"pwd\":\"SZLZbxtq$84592457\",\"confirmPwd\":\"SZLZbxtq$84592457\",\"passwordPolicyInfoVO\":{\"policyName\":\"\",\"policyID\":\"\",\"minimumNumeric\":1,\"minimumLowercase\":1,\"minimumUppercase\":1,\"minimumSpecialChars\":1,\"minimumLength\":8,\"maximumLength\":100,\"passwordExpirationDays\":60,\"passwordChangeInterval\":1,\"numCharacterChange\":3}}"
+								},
+								"url": {
+									"raw": "https://captain-np.aikyam.com/api/resetpassword/resetsecuritycredentials",
+									"protocol": "https",
+									"host": [
+										"captain-np",
+										"aikyam",
+										"com"
+									],
+									"path": [
+										"api",
+										"resetpassword",
+										"resetsecuritycredentials"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "content-length",
+									"value": "0"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								},
+								{
+									"key": "date",
+									"value": "Wed, 09 Feb 2022 17:15:43 GMT"
+								},
+								{
+									"key": "trace-id",
+									"value": "0a0f373cd2e324deb875fbc31d0e1563"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "expires",
+									"value": "0"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "server",
+									"value": "CloudFront"
+								},
+								{
+									"key": "x-cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "via",
+									"value": "1.1 1b2e62e72021a3022a91a6cc92f373a0.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "x-amz-cf-pop",
+									"value": "MSP50-C2"
+								},
+								{
+									"key": "x-amz-cf-id",
+									"value": "YUJg9wDVpYQUVst8yVdMwi-Q_cJHjfjug_elp6CaBci4aopqePu2fA=="
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.globals.set(\"akymT\", utils.genAkymT());",
+							"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+							"",
+							"var Create_a_user = () => {",
+							"    let prov_host = pm.environment.get(\"prov_host\");",
+							"    let client_id = pm.environment.get(\"client_id\");",
+							"    let redirect_uri = pm.environment.get(\"redirect_uri\");",
+							"    let scope = pm.environment.get(\"scope\");",
+							"",
+							"    pm.sendRequest(\"https://\"+prov_host+\"/oidc/authorize?client_id=\"+client_id+\"&redirect_uri=\"+redirect_uri+\"&scope=\"+scope+\"&response_type=code&state=9uk-Eo_flYsbCqpGhnGpRU6trczt-4tmFg8cS4V0P4A&nonce=WKf7K5TwPXryXsTGGAwZG8GlWC2xSYNoXMpkHm4hLns&display=popup\", function(err, res) {",
+							"            tests[\"Status code is 200\"] = pm.expect(res).to.have.property('code', 200);",
+							"    });",
+							"};"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"utils = {",
+					"    genAkymT: function() {",
+					"        let TIME_STEP_ROLLOVER_MS = 5000;",
+					"        let VALIDATION_MARGIN_TIME_STEPS = 1;",
+					"        let timeStep = 0;",
+					"        let presentTime = Date.now();",
+					"        //console.log(\"Date1:----\"+presentTime);",
+					"        let sessionInSecs = (presentTime - (pm.globals.get('init_time')))/1000;",
+					"        //console.log(\"sessionInSecs:----\"+sessionInSecs);",
+					"        let tsrInSecs = TIME_STEP_ROLLOVER_MS/1000;",
+					"        //console.log(\"tsrInSecs:----\"+tsrInSecs);",
+					"        if (sessionInSecs >= tsrInSecs) {",
+					"            timeStep = Math.round(sessionInSecs / tsrInSecs);",
+					"        }",
+					"        //console.log(\"timeStep:\" + timeStep);",
+					"        let seed = pm.globals.get(\"akymS\");",
+					"        //console.log(\"API-Seed:\" + seed);",
+					"        var message = timeStep.toString();",
+					"        //console.log(\"message:----\"+message);",
+					"        //console.log(\"hash:----\"+seed);",
+					"        if(seed != undefined){",
+					"            var hash = CryptoJS.HmacSHA256(message, seed);",
+					"            var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);",
+					"            return hashInBase64;",
+					"        }",
+					"        return null;",
+					"    }",
+					"};",
+					"",
+					"let loginValues = pm.collectionVariables.get(\"loginValues\");",
+					"",
+					"if(!loginValues || loginValues.length == 0) {",
+					"    loginValues = [\"AsdBsd\", \"asd123\", 123456, \"123asd\", \"TesT1234@\",\"asdfghjklzxcvbnmqwertyuio\"];",
+					"}",
+					"",
+					"let currentUsername = loginValues.shift();",
+					"pm.collectionVariables.set(\"username\", currentUsername);",
+					"pm.collectionVariables.set(\"loginValues\", loginValues);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"statusResponse = {",
+					"  sucessCode: function() {",
+					"      return responseCode.code == 200;",
+					"  },",
+					"  sucessRedirect: function() {",
+					"      return responseCode.code == 302;",
+					"  },",
+					"  failureResponse: function() {",
+					"      return responseCode.code == 400;",
+					"  }",
+					"};",
+					"",
+					"",
+					"const loginValues = pm.collectionVariables.get(\"loginValues\");",
+					"",
+					"if (loginValues && loginValues.length > 0){",
+					"    postman.setNextRequest(\"Loop Post Parameter\");",
+					"} else {",
+					"    postman.setNextRequest(null);",
+					"}",
+					"",
+					"let randomchar= Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 8);",
+					"pm.globals.set(\"randomchar\", randomchar);"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "loginValues",
+			"value": "asd123,123456,123asd,asdfghjklzxcvbnmqwertyuiox",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "asd123,123456,123asd,asdfghjklzxcvbnmqwertyuiox",
+			"type": "string"
+		}
+	]
+}

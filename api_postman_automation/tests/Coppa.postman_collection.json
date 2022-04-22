@@ -1,0 +1,846 @@
+{
+	"info": {
+		"_postman_id": "773fbbc9-83e3-4691-b0dc-5eb7ea6c44fc",
+		"name": "Coppa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Coppa",
+			"item": [
+				{
+					"name": "S1-Yobcoppa-Past",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.yobErrorMsg).to.eql('The year or date of birth must be within the last 140 years.');",
+									"});",
+									"",
+									"postman.setNextRequest(\"S2-Yobcoppa-Count\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"birth_year\":\"1770\"}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users/validate-coppa",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"validate-coppa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S2-Yobcoppa-Count",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"pm.globals.set(\"variable_key\", \"variable_value\");",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.yobErrorMsg).to.eql(\"You must be at least 13 years old to create an \"+ pm.environment.get(\"tenant_name\")+\".\");",
+									"});",
+									"",
+									"postman.setNextRequest(\"S3-Yobcoppa-Feature\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"birth_year\":\"2021\"}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users/validate-coppa",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"validate-coppa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S3-Yobcoppa-Feature",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.yobErrorMsg).to.eql('Year of birth must be in the past.');",
+									"});",
+									"",
+									"postman.setNextRequest(\"S4-Yobcoppa-Blank\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"birth_year\":\"2070\"}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users/validate-coppa",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"validate-coppa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S4-Yobcoppa-Blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.yobErrorMsg).to.eql('Year of birth is required.');",
+									"});",
+									"",
+									"postman.setNextRequest(\"S5-Dobcoppa-Past\");",
+									"//postman.setNextRequest(\"/api/v1/users/check-email\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"birth_year\":\"\"}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users/validate-coppa",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"validate-coppa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S5-Dobcoppa-Past",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.dob).to.eql('The year or date of birth must be within the last 140 years.');",
+									"});",
+									"postman.setNextRequest(\"S6-Dobcoppa-Count\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"birth_date\":\"11-11-1770\"}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users/validate-coppa",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"validate-coppa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S6-Dobcoppa-Count",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.globalErrors).to.eql([]);",
+									"    pm.expect(jsonData.errorMap.dob).to.eql(\"You must be at least 13 years old to create an \"+ pm.environment.get(\"tenant_name\")+\".\");",
+									"});",
+									"",
+									"postman.setNextRequest(\"S7-Dobcoppa-Feature\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"birth_date\":\"11-11-2021\"}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users/validate-coppa",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"validate-coppa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S7-Dobcoppa-Feature",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.globalErrors).to.eql([]);",
+									"    pm.expect(jsonData.errorMap.dob).to.eql('Date of birth must be in the past.');",
+									"});",
+									"",
+									"postman.setNextRequest(\"S8-Dobcoppa-Blank\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"birth_date\":\"11-11-2070\"}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users/validate-coppa",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"validate-coppa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S8-Dobcoppa-Blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.globalErrors).to.eql([]);",
+									"});",
+									"",
+									"postman.setNextRequest(\"FirstnamewithMaxleng\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"birth_date\":\" \"}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users/validate-coppa",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"validate-coppa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S9-Dobcoppa",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.globalErrors).to.eql([]);",
+									"    pm.expect(jsonData.errorMap.dob).to.eql('Date of birth is required.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// if (pm.globals.get(\"dobboolean\")){",
+									"//     pm.globals.set(\"dobOrYobString\", \"birth_date\");",
+									"//     pm.collectionVariables.set(\"dobOrYob\", \"11-11-1770\");",
+									"    ",
+									"// }else{",
+									"//     pm.globals.set(\"dobOrYobString\", \"birth_year\");",
+									"//     pm.collectionVariables.set(\"dobOrYob\", \"1770\");",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"birth_year\":\"1990\",\"birth_date\":\"11-11-1990\"}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users/validate-coppa",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"validate-coppa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"utils = {",
+					"    genAkymT: function() {",
+					"        let TIME_STEP_ROLLOVER_MS = 5000;",
+					"        let VALIDATION_MARGIN_TIME_STEPS = 1;",
+					"        let timeStep = 0;",
+					"        let presentTime = Date.now();",
+					"        //console.log(\"Date1:----\"+presentTime);",
+					"        let sessionInSecs = (presentTime - (pm.globals.get('init_time')))/1000;",
+					"        //console.log(\"sessionInSecs:----\"+sessionInSecs);",
+					"        let tsrInSecs = TIME_STEP_ROLLOVER_MS/1000;",
+					"        //console.log(\"tsrInSecs:----\"+tsrInSecs);",
+					"        if (sessionInSecs >= tsrInSecs) {",
+					"            timeStep = Math.round(sessionInSecs / tsrInSecs);",
+					"        }",
+					"        //console.log(\"timeStep:\" + timeStep);",
+					"        let seed = pm.globals.get(\"akymS\");",
+					"        //console.log(\"API-Seed:\" + seed);",
+					"        var message = timeStep.toString();",
+					"        //console.log(\"message:----\"+message);",
+					"        //console.log(\"hash:----\"+seed);",
+					"        if(seed != undefined){",
+					"            var hash = CryptoJS.HmacSHA256(message, seed);",
+					"            var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);",
+					"            return hashInBase64;",
+					"        }",
+					"        return null;",
+					"    }",
+					"};",
+					"",
+					"let loginValues = pm.collectionVariables.get(\"loginValues\");",
+					"",
+					"if(!loginValues || loginValues.length == 0) {",
+					"    loginValues = [\"AsdBsd\", \"asd123\", 123456, \"123asd\", \"TesT1234@\",\"asdfghjklzxcvbnmqwertyuio\"];",
+					"}",
+					"",
+					"let currentUsername = loginValues.shift();",
+					"pm.collectionVariables.set(\"username\", currentUsername);",
+					"pm.collectionVariables.set(\"loginValues\", loginValues);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"statusResponse = {",
+					"  sucessCode: function() {",
+					"      return responseCode.code == 200;",
+					"  },",
+					"  sucessRedirect: function() {",
+					"      return responseCode.code == 302;",
+					"  },",
+					"  failureResponse: function() {",
+					"      return responseCode.code == 400;",
+					"  }",
+					"};",
+					"",
+					"",
+					"const loginValues = pm.collectionVariables.get(\"loginValues\");",
+					"",
+					"if (loginValues && loginValues.length > 0){",
+					"    postman.setNextRequest(\"Loop Post Parameter\");",
+					"} else {",
+					"    postman.setNextRequest(null);",
+					"}",
+					"",
+					"let randomchar= Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 8);",
+					"pm.globals.set(\"randomchar\", randomchar);"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "username",
+			"value": ""
+		},
+		{
+			"key": "loginValues",
+			"value": ""
+		}
+	]
+}

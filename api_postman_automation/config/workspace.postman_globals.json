@@ -1,0 +1,189 @@
+{
+	"id": "a770c572-5577-443c-8290-b9559748ce13",
+	"values": [
+		{
+			"key": "init_time",
+			"value": "1647360104081",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "akymS",
+			"value": null,
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "fName",
+			"value": "FirstName1647360106886",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "lName",
+			"value": "LastName1647360106886",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "uName",
+			"value": "UserName1647360106886",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "akymT",
+			"value": null,
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Usertoken",
+			"value": null,
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Securityanswer",
+			"value": "kiss1",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "token",
+			"value": "S-qHnYArjHlaf6pV7PxcXZtxJYE",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Code",
+			"value": null,
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "secQuestion1",
+			"value": "What was the name of your worst boss?",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "secQuestion2",
+			"value": "What is your least favorite food?",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "secQuestionId1",
+			"value": "4",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "secQuestionId2",
+			"value": "3",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Securityanswer1",
+			"value": "boss1",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Securityanswer2",
+			"value": "food1",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "pwd",
+			"value": "Pass$11647360122890",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "yob",
+			"value": "2009",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "dob",
+			"value": "02-26-2009",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "sharedmailaddres",
+			"value": "regtesting1-1@getnada.co",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "dobOrYob",
+			"value": "02-26-2009",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "uniqueOrSharedEmail",
+			"value": "priminv1647360106073@sharklasers.com",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "dobOrYobString",
+			"value": "birth_date",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "variable_key",
+			"value": "",
+			"type": "any",
+			"enabled": false
+		},
+		{
+			"key": "randomchar",
+			"value": "udnpmyb",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "dobboolean",
+			"value": true,
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "sharedemailboolean",
+			"value": "true",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "dobOrYobs",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "sharedmailaddress",
+			"value": "regtesting1-1@getnada.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "variable_key",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2022-04-22T00:13:28.174Z",
+	"_postman_exported_using": "Postman/9.8.3"
+}

@@ -1,0 +1,4474 @@
+{
+	"info": {
+		"_postman_id": "833a446b-cc69-4229-ab9c-a75fc1bba427",
+		"name": "Users API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "FirstnamewithMaxleng",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    if (pm.environment.get(\"tenant_name\")=='A ID') {",
+									"        console.log('I am in if');",
+									"        var jsonData = pm.response.json();",
+									"        pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"        pm.expect(jsonData.errorMap).to.eql({});",
+									"    }",
+									"    else {",
+									"    console.log('I am in else');",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.firstNameError).to.eql(\"First name must be 50 characters or less.\");",
+									"    }",
+									"});",
+									"",
+									" postman.setNextRequest(\"LastnamewithMaxleng\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"{{fName}}sdfsdfsdfsdfdsfdsfdsflsdflsdkflskdflskdlfsdfs;dfsdfsdfsdf\",\"last_name\":\"{{lName}}\",\"birth_date\":\"11-11-1990\",\"birth_year\":\"1990\",\"email_address\":\"{{uniqueOrSharedEmail}}\",\"user_name\":\"{{$timestamp}}{{uName}}\",\"password\":\"Optum@12\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LastnamewithMaxleng",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    if (pm.environment.get(\"tenant_name\")=='A ID') {",
+									"        console.log('I am in if');",
+									"        var jsonData = pm.response.json();",
+									"        pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"        pm.expect(jsonData.errorMap).to.eql({});",
+									"    }",
+									"    else {",
+									"    console.log('I am in else');",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.lastNameError).to.eql(\"Last name must be 50 characters or less.\");",
+									"    }",
+									"});",
+									"",
+									"postman.setNextRequest(\"Verify the registration of a user with length equal to 50 chars for FN and LN\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"{{fName}}\",\"last_name\":\"{{lName}}sdfsdfsdfsdfdsfdsfdsflsdflsdkflskdflskdlfsdfs;dfsdfsdfsdf\",\"birth_date\":\"11-11-1990\",\"birth_year\":\"1990\",\"email_address\":\"{{uniqueOrSharedEmail}}\",\"user_name\":\"AutoUN1{{$timestamp}}\",\"password\":\"Optum@12\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify the registration of a user with length equal to 50 chars for FN and LN",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+									"    pm.expect(jsonData.errorMap).to.eql({});",
+									"});",
+									"postman.setNextRequest(\"Verify the registration of a user with accent chars for FN and LN\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"abcdefghijklmn0pqrstuvwxy1234567890abcdefghijklmFN\",\"last_name\":\"abcdefghijklmn0pqrstuvwxy1234567890abcdefghijklmLN\",\"birth_date\":\"11-11-1986\",\"birth_year\":\"1986\",\"email_address\":\"{{randomchar}}{{uniqueOrSharedEmail}}\",\"user_name\":\"AutoUserFNLN50Valid{{randomchar}}\",\"password\":\"Optum@12\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify the registration of a user with accent chars for FN and LN",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+									"    pm.expect(jsonData.errorMap).to.eql({});",
+									"});",
+									"",
+									"postman.setNextRequest(\"Verify the registration of a user with length greater than to 50 chars for FN and LN\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"íúÍÚüÑ¿¡ÜàáâêëîïóôùûæÆÀÁÂÉÈÎÏÓÔÙÛœŒçÇ«»¢£¥ƒ€ßäöÄÖñ\",\"last_name\":\"íúÍÚüÑ¿¡ÜàáâêëîïóôùûæÆÀÁÂÉÈÎÏÓÔÙÛœŒçÇ«»¢£¥ƒ€ßäöÄÖñ\",\"birth_date\":\"11-11-1986\",\"birth_year\":\"1986\",\"email_address\":\"{{randomchar}}{{uniqueOrSharedEmail}}\",\"user_name\":\"AutoUserFNLN50Valid{{randomchar}}\",\"password\":\"Optum@12\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify the registration of a user with length greater than to 50 chars for FN and LN",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.firstNameError).to.eql(\"First name must be 50 characters or less.\");",
+									"    pm.expect(jsonData.errorMap.lastNameError).to.eql(\"Last name must be 50 characters or less.\");",
+									"});",
+									"postman.setNextRequest(\"Registration with in-valid details\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"abcdefghijklmn0pqrstuvwxy1234567890abcdefghijkl51FN\",\"last_name\":\"abcdefghijklmn0pqrstuvwxy1234567890abcdefghijkl51LN\",\"birth_date\":\"11-11-1986\",\"birth_year\":\"1986\",\"email_address\":\"{{randomchar}}{{uniqueOrSharedEmail}}\",\"user_name\":\"AutoUserFNLN50Valid{{randomchar}}\",\"password\":\"Optum@12\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with in-valid details",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"//Token",
+									"var jsonData = JSON.parse(responseBody);",
+									"//postman.setEnvironmentVariable(\"Usertoken\", jsonData.token);",
+									"pm.globals.set(\"Usertoken\", jsonData.token);",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"});",
+									"postman.setNextRequest(\"Registration with in-valid Phone\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"{{fName}}\",\"last_name\":\"{{lName}}\",\"birth_date\":\"11-11-1990\",\"birth_year\":\"1990\",\"email_address\":\"{{randomchar}}{{uniqueOrSharedEmail}}\",\"user_name\":\"{{uName}}{{$randomAlphaNumeric}}\",\"password\":\"Optum12\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with in-valid Phone",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"//Token",
+									"var jsonData = JSON.parse(responseBody);",
+									"//postman.setEnvironmentVariable(\"Usertoken\", jsonData.token);",
+									"pm.globals.set(\"Usertoken\", jsonData.token);",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.phoneNo).to.eql(\"Phone Number doesn't match\");",
+									"});",
+									"",
+									"postman.setNextRequest(\"Registration with empty\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"{{fName}}\",\"last_name\":\"{{lName}}\",\"birth_date\":\"11-11-1990\",\"birth_year\":\"1990\",\"email_address\":\"{{uniqueOrSharedEmail}}\",\"user_name\":\"{{uName}}{{$randomAlphaNumeric}}\",\"password\":\"Optum12@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"000\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with empty",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"//Token",
+									"var jsonData = JSON.parse(responseBody);",
+									"//postman.setEnvironmentVariable(\"Usertoken\", jsonData.token);",
+									"pm.globals.set(\"Usertoken\", jsonData.token);",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.firstNameError).to.eql(\"First name is required.\");",
+									"    pm.expect(jsonData.errorMap.lastNameError).to.eql(\"Last name is required.\");",
+									"});",
+									"postman.setNextRequest(\"Registration with futureDOB\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"\",\"last_name\":\"\",\"birth_date\":\"\",\"birth_year\":\"\",\"email_address\":\"{{uniqueOrSharedEmail}}\",\"user_name\":\"{{uName}}{{$randomAlphaNumeric}}\",\"password\":\"Optum12@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with futureDOB",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"//Token",
+									"var jsonData = JSON.parse(responseBody);",
+									"//postman.setEnvironmentVariable(\"Usertoken\", jsonData.token);",
+									"pm.globals.set(\"Usertoken\", jsonData.token);",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.dob).to.eql(\"Date of birth must be in the past.\");",
+									"});",
+									"",
+									"postman.setNextRequest(\"Registration with invalid DOB\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"11-11-2060\",\"birth_year\":\"2060\",\"email_address\":\"{{uniqueOrSharedEmail}}\",\"user_name\":\"{{uName}}{{$randomAlphaNumeric}}\",\"password\":\"Optum12@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with invalid DOB",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"//Token",
+									"var jsonData = JSON.parse(responseBody);",
+									"//postman.setEnvironmentVariable(\"Usertoken\", jsonData.token);",
+									"pm.globals.set(\"Usertoken\", jsonData.token);",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.dob).to.eql(\"Please enter a valid date.\");",
+									"});",
+									"postman.setNextRequest(\"Registration with invalid DOB Format\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"11-11\",\"birth_year\":\"2060\",\"email_address\":\"{{uniqueOrSharedEmail}}\",\"user_name\":\"{{uName}}{{$randomAlphaNumeric}}\",\"password\":\"Optum12@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with invalid DOB Format",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"//Token",
+									"var jsonData = JSON.parse(responseBody);",
+									"//postman.setEnvironmentVariable(\"Usertoken\", jsonData.token);",
+									"pm.globals.set(\"Usertoken\", jsonData.token);",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.dob).to.eql(\"Please enter a valid date.\");",
+									"});",
+									"postman.setNextRequest(\"Registration with invalid DOB 00-00\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"21-11-2000\",\"birth_year\":\"2000\",\"email_address\":\"{{uniqueOrSharedEmail}}\",\"user_name\":\"{{uName}}{{$randomAlphaNumeric}}\",\"password\":\"Optum12@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with invalid DOB 00-00",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"//Token",
+									"var jsonData = JSON.parse(responseBody);",
+									"//postman.setEnvironmentVariable(\"Usertoken\", jsonData.token);",
+									"pm.globals.set(\"Usertoken\", jsonData.token);",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.dob).to.eql(\"Please enter a valid date.\");",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and dob of 00-21-1986\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"00-00-2000\",\"birth_year\":\"2000\",\"email_address\":\"{{$randomAlphaNumeric}}{{uniqueOrSharedEmail}}\",\"user_name\":\"{{uName}}{{$randomAlphaNumeric}}\",\"password\":\"Optum12@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and dob of 00-21-1986",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"//Token",
+									"var jsonData = JSON.parse(responseBody);",
+									"//postman.setEnvironmentVariable(\"Usertoken\", jsonData.token);",
+									"pm.globals.set(\"Usertoken\", jsonData.token);",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.dob).to.eql(\"Please enter a valid date.\");",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and dob of 03-00-1986\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"00-21-1986\",\"birth_year\":\"1986\",\"email_address\":\"{{$timestamp}}{{uniqueOrSharedEmail}}\",\"user_name\":\"{{uName}}{{$randomAlphaNumeric}}\",\"password\":\"Optum12@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and dob of 03-00-1986",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"//Token",
+									"var jsonData = JSON.parse(responseBody);",
+									"//postman.setEnvironmentVariable(\"Usertoken\", jsonData.token);",
+									"pm.globals.set(\"Usertoken\", jsonData.token);",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.dob).to.eql(\"Please enter a valid date.\");",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and dob of 03-21-0000\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"03-00-1986\",\"birth_year\":\"1986\",\"email_address\":\"{{$timestamp}}{{uniqueOrSharedEmail}}\",\"user_name\":\"{{uName}}{{$randomAlphaNumeric}}\",\"password\":\"Optum12@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and dob of 03-21-0000",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"//Token",
+									"var jsonData = JSON.parse(responseBody);",
+									"//postman.setEnvironmentVariable(\"Usertoken\", jsonData.token);",
+									"pm.globals.set(\"Usertoken\", jsonData.token);",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.dob).to.eql(\"The year or date of birth must be within the last 140 years.\");",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and dob of 00-00-0000\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"03-21-0000\",\"birth_year\":\"0000\",\"email_address\":\"{{$timestamp}}{{uniqueOrSharedEmail}}\",\"user_name\":\"{{uName}}{{$randomAlphaNumeric}}\",\"password\":\"Optum12@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and dob of 00-00-0000",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"//Token",
+									"var jsonData = JSON.parse(responseBody);",
+									"//postman.setEnvironmentVariable(\"Usertoken\", jsonData.token);",
+									"pm.globals.set(\"Usertoken\", jsonData.token);",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.dob).to.eql(\"Please enter a valid date.\");",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and invalid dob for leap year\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"00-00-0000\",\"birth_year\":\"0000\",\"email_address\":\"{{$timestamp}}{{uniqueOrSharedEmail}}\",\"user_name\":\"{{uName}}{{$randomAlphaNumeric}}\",\"password\":\"Optum12@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and invalid dob for leap year",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"//Token",
+									"var jsonData = JSON.parse(responseBody);",
+									"//postman.setEnvironmentVariable(\"Usertoken\", jsonData.token);",
+									"pm.globals.set(\"Usertoken\", jsonData.token);",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.dob).to.eql(\"Please enter a valid date.\");",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details with dob less than 12 years for copa validations\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"02-29-1986\",\"birth_year\":\"1986\",\"email_address\":\"{{$timestamp}}{{uniqueOrSharedEmail}}\",\"user_name\":\"{{uName}}{{$randomAlphaNumeric}}\",\"password\":\"Optum12@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details with dob less than 12 years for copa validations",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"//Token",
+									"var jsonData = JSON.parse(responseBody);",
+									"//postman.setEnvironmentVariable(\"Usertoken\", jsonData.token);",
+									"pm.globals.set(\"Usertoken\", jsonData.token);",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.dob).to.eql(\"You must be at least 13 years old to create an \"+ pm.environment.get(\"tenant_name\")+\".\");",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details with dob equal to 12 years for copa validations\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"02-02-2021\",\"birth_year\":\"2021\",\"email_address\":\"{{$timestamp}}{{uniqueOrSharedEmail}}\",\"user_name\":\"{{uName}}{{$randomAlphaNumeric}}\",\"password\":\"Optum12@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details with dob equal to 12 years for copa validations",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 12);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.dob).to.eql(\"You must be at least 13 years old to create an \"+ pm.environment.get(\"tenant_name\")+\".\");",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details with dob equal to 13 years for copa validations\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"{{$timestamp}}{{uniqueOrSharedEmail}}\",\"user_name\":\"{{uName}}{{$randomAlphaNumeric}}\",\"password\":\"Optum12@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details with dob equal to 13 years for copa validations",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+									"    pm.expect(jsonData.errorMap).to.eql({});",
+									"});",
+									"postman.setNextRequest(\"Verify the error message while Reg with valid details with password having the username\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"{{$timestamp}}{{uniqueOrSharedEmail}}\",\"user_name\":\"{{uName}}{{$timestamp}}\",\"password\":\"Optum12@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify the error message while Reg with valid details with password having the username",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"//585"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.pwd).to.eql(\"Your password may not contain your \"+ pm.environment.get(\"tenant_name\")+\".\");",
+									"});",
+									"postman.setNextRequest(\"Verify the error message while Registration with valid details with username having less than 6 chars\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomString}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUserPwd1{{$timestamp}}\",\"password\":\"AutoUserPwd1{{$timestamp}}July2014@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify the error message while Registration with valid details with username having less than 6 chars",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"//585"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.userName).to.eql(\"Invalid \"+ pm.environment.get(\"tenant_name\"));",
+									"});",
+									"postman.setNextRequest(\"Verify the error message while Registration with valid details with username having chars more than 50\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomString}}gvh0rh0b@mailosaur.io\",\"user_name\":\"Aut1\",\"password\":\"July2014@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify the error message while Registration with valid details with username having chars more than 50",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"//585"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.userName).to.eql(\"Invalid \"+ pm.environment.get(\"tenant_name\"));",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details with Username chars length of 6 chars\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomString}}gvh0rh0b@mailosaur.io\",\"user_name\":\"UserNameMaxChars1234567890UserNameMaxChars123456789999999\",\"password\":\"July2014@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details with Username chars length of 6 chars",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+									"    pm.expect(jsonData.errorMap).to.eql({});",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details with Username chars length of 50 chars\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"{{randomchar}}\",\"password\":\"July2014@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details with Username chars length of 50 chars",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+									"    pm.expect(jsonData.errorMap).to.eql({});",
+									"});",
+									"postman.setNextRequest(\"Registration of a user with user name having special chars that are allowed\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUser123456789012345678901234567{{randomchar}}\",\"password\":\"July2014@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration of a user with user name having special chars that are allowed",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+									"    pm.expect(jsonData.errorMap).to.eql({});",
+									"});",
+									"postman.setNextRequest(\"Registration of a user with user name in smaller case\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUser1@#!~${}[]&%#}{{randomchar}}\",\"password\":\"July2014@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration of a user with user name in smaller case",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+									"    pm.expect(jsonData.errorMap).to.eql({});",
+									"});",
+									"postman.setNextRequest(\"Registration of a user with user name in upper case\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"autousercase{{randomchar}}\",\"password\":\"July2014@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration of a user with user name in upper case",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+									"    pm.expect(jsonData.errorMap).to.eql({});",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and pwd having prohibited chars\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AUTOUSERCASE{{randomchar}}\",\"password\":\"July2014@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and pwd having prohibited chars",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+									"    pm.expect(jsonData.errorMap).to.eql({});",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and pwd having one chars\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUser112${{randomchar}}\",\"password\":\"July2014~`\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and pwd having one chars",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and pwd having repeated chars\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUser113${{randomchar}}\",\"password\":\"J`\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and pwd having repeated chars",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+									"    pm.expect(jsonData.errorMap).to.eql({});",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and pwd having no upper case chars\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUser114${{randomchar}}\",\"password\":\"xxxxxxJJJJ@@20142014\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and pwd having no upper case chars",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.pwd).to.eql(\"Need more uppercase characters.\");",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and pwd having no lower case chars\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail115{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUser115${{randomchar}}\",\"password\":\"july@123456\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and pwd having no lower case chars",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.pwd).to.eql(\"Need more lowercase characters.\");",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and pwd having no numeric chars\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail116{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUser116${{randomchar}}\",\"password\":\"JULY@123456\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and pwd having no numeric chars",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.pwd).to.eql(\"Need more numeric characters.\");",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and pwd having no special chars\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail117{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUser117${{randomchar}}\",\"password\":\"JULY@july\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and pwd having no special chars",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"//tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"// pm.test(\"validating the status\", function () {",
+									"//     var jsonData = pm.response.json();",
+									"//     pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"//     pm.expect(jsonData.errorMap.pwd).to.eql(\"Need more special characters.\");",
+									"// });",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    if (pm.environment.get(\"tenant_name\")=='A ID') {",
+									"        console.log('I am in if');",
+									"        tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"        var jsonData = pm.response.json();",
+									"        pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+									"        pm.expect(jsonData.errorMap).to.eql({});",
+									"    } ",
+									"    else {",
+									"        console.log('I am in else');",
+									"        tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"        var jsonData = pm.response.json();",
+									"        pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"        pm.expect(jsonData.errorMap.pwd).to.eql(\"Need more special characters.\");",
+									"    }",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and pwd having space\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail118{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUser118${{randomchar}}\",\"password\":\"July12345678\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and pwd having space",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"// tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    if (pm.environment.get(\"tenant_name\")=='A ID') {",
+									"        console.log('I am in if');",
+									"        tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"        var jsonData = pm.response.json();",
+									"        pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"        pm.expect(jsonData.errorMap.pwd).to.eql(\"Should not use prohibited characters.\");",
+									"    } ",
+									"    else {",
+									"        console.log('I am in else');",
+									"        tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"        var jsonData = pm.response.json();",
+									"        pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+									"        pm.expect(jsonData.errorMap).to.eql({});",
+									"    }",
+									"});",
+									"postman.setNextRequest(\"Verify the error message for registration with username having no letters\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail119{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUser119${{randomchar}}\",\"password\":\"July @ 12345678\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify the error message for registration with username having no letters",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.userName).to.eql(\"Invalid \"+ pm.environment.get(\"tenant_name\"));",
+									"});",
+									"postman.setNextRequest(\"Verify the error message for registration with username having a space\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"123456789012345678901234567\",\"password\":\"July2014@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify the error message for registration with username having a space",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.userName).to.eql(\"Invalid \"+ pm.environment.get(\"tenant_name\"));",
+									"});",
+									"postman.setNextRequest(\"Verify the error message for registration with username that is not available\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUser {{uName}}\",\"password\":\"July2014@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify the error message for registration with username that is not available",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.userName).to.eql(\"Username is not available\");",
+									"});",
+									"postman.setNextRequest(\"Verify The Error Message For Registration With Username Having Accents Letters\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"{{loginUsername}}\",\"password\":\"July2014@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify The Error Message For Registration With Username Having Accents Letters",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"postman.setNextRequest(\"Registration with valid details and password of min length\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"Auto12{{randomchar}}ààà\",\"password\":\"July2014@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and password of min length",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+									"    pm.expect(jsonData.errorMap).to.eql({});",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and password of length less than min allowed length\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUserpwdMinLength123459{{randomchar}}\",\"password\":\"Jul2014@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and password of length less than min allowed length",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and password of length 1 char\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUserpwdMinLength123459{{randomchar}}\",\"password\":\"Jul201@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and password of length 1 char",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"});",
+									"",
+									"postman.setNextRequest(\"Registration with valid details and password of max length\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUserpwdMinLength123459{{randomchar}}\",\"password\":\"J\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and password of max length",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+									"    pm.expect(jsonData.errorMap).to.eql({});",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and password of greater than max allowed length\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUserPwdMaxLen123456{{randomchar}}\",\"password\":\"Test@1234Test@1234Test@1234Test@1234Test@1234Test@1234Test@1234Test@1234Test@1234Test@1234Test@12344\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and password of greater than max allowed length",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"});",
+									"postman.setNextRequest(\"Registration with valid details and Sec Questions Ans having words from sec questions\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUserPwdMaxLen123456{{randomchar}}\",\"password\":\"Test@1234Test@1234Test@1234Test@1234Test@1234Test@1234Test@1234Test@1234Test@1234Test@1234Test@1234Test@1234\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with valid details and Sec Questions Ans having words from sec questions",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));",
+									"",
+									"const date = new Date();",
+									"//let bday = (date.getMonth()+1) + \"-\" + (date.getDate()) + \"-\" + (date.getFullYear() - 12) ;",
+									"let bday = (\"0\" + (date.getMonth() + 1)).slice(-2) + \"-\" + (\"0\" + (date.getDate())).slice(-2) + \"-\" + (date.getFullYear() - 13);",
+									"pm.environment.set(\"bday\",bday);",
+									"console.log(bday);",
+									"pm.globals.get(\"randomchar\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 400\"] = statusResponse.failureResponse();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"FAILURE\");",
+									"    pm.expect(jsonData.errorMap.secAns2ErrorMsg).to.eql(\"Security answer cannot include words from a security question.\");",
+									"    pm.expect(jsonData.errorMap.secAns3ErrorMsg).to.eql(\"Security answer cannot include words from a security question.\");",
+									"});",
+									"postman.setNextRequest(\"Reg with valid info\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"Test\",\"last_name\":\"Test\",\"birth_date\":\"{{bday}}\",\"birth_year\":\"2010\",\"email_address\":\"AutoEmail1{{$randomAlphaNumeric}}gvh0rh0b@mailosaur.io\",\"user_name\":\"AutoUser123457{{randomchar}}\",\"password\":\"July2014@\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer_invalid2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer_invalid3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reg with valid info",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"akymT\", utils.genAkymT());",
+									"console.log(\"API-get-Token:\" + pm.globals.get(\"akymT\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//First test case",
+									"tests[\"status code is 200\"] = statusResponse.sucessCode();",
+									"",
+									"pm.test(\"validating the status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+									"    pm.expect(jsonData.errorMap).to.eql({});",
+									"});",
+									"//postman.setNextRequest(\"/oidc/authorize\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "https://{{prov_host}}/app/index.html"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+							},
+							{
+								"key": "akym-s",
+								"value": "{{akymS}}"
+							},
+							{
+								"key": "akym-t",
+								"value": "{{akymT}}"
+							},
+							{
+								"key": "akym-ubrid",
+								"value": "{{ubrid}}"
+							},
+							{
+								"key": "host",
+								"value": "{{prov_host}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"{{fName}}\",\"last_name\":\"{{lName}}\",\"birth_date\":\"11-11-1990\",\"birth_year\":\"1990\",\"email_address\":\"{{$timestamp}}{{uniqueOrSharedEmail}}\",\"user_name\":\"Automuser{{$timestamp}}\",\"password\":\"Optum@12\",\"coppaCount\":0,\"checkForNotification\":true,\"phone_number\":\"\",\"showSQAbasedOnUserSelectionInRegistration\":false,\"kb_qna\":[{\"qid\":\"{{qid_id1}}\",\"qtext\":\"{{question_1}}\",\"answer\":\"{{qid_answer1}}\",\"index\":1},{\"qid\":\"{{qid_id2}}\",\"qtext\":\"{{question_2}}\",\"answer\":\"{{qid_answer2}}\",\"index\":2},{\"qid\":\"{{qid_id3}}\",\"qtext\":\"{{question_3}}\",\"answer\":\"{{qid_answer3}}\",\"index\":3}]}"
+						},
+						"url": {
+							"raw": "https://{{serverUrl}}/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"utils = {",
+					"    genAkymT: function() {",
+					"        let TIME_STEP_ROLLOVER_MS = 5000;",
+					"        let VALIDATION_MARGIN_TIME_STEPS = 1;",
+					"        let timeStep = 0;",
+					"        let presentTime = Date.now();",
+					"        //console.log(\"Date1:----\"+presentTime);",
+					"        let sessionInSecs = (presentTime - (pm.globals.get('init_time')))/1000;",
+					"        //console.log(\"sessionInSecs:----\"+sessionInSecs);",
+					"        let tsrInSecs = TIME_STEP_ROLLOVER_MS/1000;",
+					"        //console.log(\"tsrInSecs:----\"+tsrInSecs);",
+					"        if (sessionInSecs >= tsrInSecs) {",
+					"            timeStep = Math.round(sessionInSecs / tsrInSecs);",
+					"        }",
+					"        //console.log(\"timeStep:\" + timeStep);",
+					"        let seed = pm.globals.get(\"akymS\");",
+					"        //console.log(\"API-Seed:\" + seed);",
+					"        var message = timeStep.toString();",
+					"        //console.log(\"message:----\"+message);",
+					"        //console.log(\"hash:----\"+seed);",
+					"        if(seed != undefined){",
+					"            var hash = CryptoJS.HmacSHA256(message, seed);",
+					"            var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);",
+					"            return hashInBase64;",
+					"        }",
+					"        return null;",
+					"    }",
+					"};",
+					"",
+					"let loginValues = pm.collectionVariables.get(\"loginValues\");",
+					"",
+					"if(!loginValues || loginValues.length == 0) {",
+					"    loginValues = [\"AsdBsd\", \"asd123\", 123456, \"123asd\", \"TesT1234@\",\"asdfghjklzxcvbnmqwertyuio\"];",
+					"}",
+					"",
+					"let currentUsername = loginValues.shift();",
+					"pm.collectionVariables.set(\"username\", currentUsername);",
+					"pm.collectionVariables.set(\"loginValues\", loginValues);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"statusResponse = {",
+					"  sucessCode: function() {",
+					"      return responseCode.code == 200;",
+					"  },",
+					"  sucessRedirect: function() {",
+					"      return responseCode.code == 302;",
+					"  },",
+					"  failureResponse: function() {",
+					"      return responseCode.code == 400;",
+					"  }",
+					"};",
+					"",
+					"",
+					"const loginValues = pm.collectionVariables.get(\"loginValues\");",
+					"",
+					"if (loginValues && loginValues.length > 0){",
+					"    postman.setNextRequest(\"Loop Post Parameter\");",
+					"} else {",
+					"    postman.setNextRequest(null);",
+					"}",
+					"",
+					"let randomchar= Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 8);",
+					"pm.globals.set(\"randomchar\", randomchar);"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "loginValues",
+			"value": "asd123,123456,123asd,asdfghjklzxcvbnmqwertyuiox",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "asd123,123456,123asd,asdfghjklzxcvbnmqwertyuiox",
+			"type": "string"
+		},
+		{
+			"key": "dobOrYob",
+			"value": ""
+		}
+	]
+}
